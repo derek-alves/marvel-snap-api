@@ -1,7 +1,7 @@
 import '../env/env.dart';
 
 class ApiUrlManager {
-  Future<String> makeMarvelSnapUrl(MarvelSnapDataType dataType) async {
+  static Future<String> makeMarvelSnapUrl(MarvelSnapDataType dataType) async {
     var urlDatabase = await CustomEnv.get<String>(key: 'source_database_url');
     return urlDatabase.replaceAll('[seerchType]', dataType.name);
   }
