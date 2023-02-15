@@ -1,6 +1,10 @@
-import 'package:marvel_snap/infra/factory/make_card_database_repository_impl.dart';
+import 'package:marvel_snap/infra/factory/usecase/update_cards_database_usecase_factory.dart';
 
 void main(List<String> arguments) async {
-  var cardDatabaseRepository = makeCardDatabaseRepositoryFactory();
-  await cardDatabaseRepository.update();
+  try {
+    var updateCardsDatabse = updateCardsDatabaseUsecaseFactory();
+    await updateCardsDatabse.call();
+  } catch (e) {
+    print(e);
+  }
 }
