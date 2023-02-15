@@ -16,13 +16,18 @@ class MongoConnectionAdapter implements DatabaseConnection<Db> {
 
   @override
   Future<Db> createConnection([String? mongoConnection]) async {
-    var user = await CustomEnv.get<String>(key: 'mongo_user');
-    var password = await CustomEnv.get<String>(key: 'mongo_password');
-    var cluster = await CustomEnv.get<String>(key: 'mongo_cluster_name');
-    var db = await Db.create(
-      mongoConnection ??
-          'mongodb+srv://$user:$password@$cluster.pevjfax.mongodb.net/marvel_snap_db?retryWrites=true&w=majority',
-    );
-    return await db.open();
+    try {
+      var user = await CustomEnv.get<String>(key: 'mongo_user');
+      var password = await CustomEnv.get<String>(key: 'mongo_password');
+      var cluster = await CustomEnv.get<String>(key: 'mongo_cluster_name');
+      var db = await Db.create(
+        mongoConnection ??
+            'mongodb+srv://$user:$password@$cluster.pevjfax.mongodb.net/marvel_snap_db?retryWrites=true&w=majority',
+      );
+      return await db.open();
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
   }
 }

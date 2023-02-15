@@ -2,7 +2,7 @@ import 'package:marvel_snap/domain/infra/repository/database_update_repository.d
 import 'package:marvel_snap/infra/factory/factory.dart';
 import 'package:marvel_snap/infra/repository/card_database_repository_impl.dart';
 
-DatabaseUpdateRepository makeCardDatabaseRepositoryFactory() =>
+DatabaseUpdateRepository cardDatabaseRepositoryFactory() =>
     CardDatabaseRepositoryImpl(
-      connection: makeMongoConnectionFactory(),
+      connection: mongoConnectionFactory(),
     );

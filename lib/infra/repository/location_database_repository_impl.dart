@@ -10,7 +10,7 @@ class LocationDatabaseRepositoryImpl implements DatabaseUpdateRepository {
     required this.connection,
   });
   @override
-  Future<void> update() async {
+  Future<void> update(List location) async {
     try {
       // repository http
       var urlDatabase =
