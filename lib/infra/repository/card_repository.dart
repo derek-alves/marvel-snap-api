@@ -5,7 +5,7 @@ import '../../domain/infra/infra.dart';
 
 class CardRepository implements Repository<Card> {
   late final DbCollection _cardCollection;
-  CardRepository({required DatabaseConnection connection}) {
+  CardRepository({required DatabaseService connection}) {
     connection.connection.then(
       (conn) => _cardCollection = conn.collection('cards'),
     );

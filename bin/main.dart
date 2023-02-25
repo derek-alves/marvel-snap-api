@@ -1,10 +1,9 @@
-import 'package:marvel_snap/infra/factory/usecase/update_cards_database_usecase_factory.dart';
+import 'package:marvel_snap/infra/factory/usecase/usecase.dart';
 
 void main(List<String> arguments) async {
-  try {
-    var updateCardsDatabse = updateCardsDatabaseUsecaseFactory();
-    await updateCardsDatabse.call();
-  } catch (e) {
-    print(e);
-  }
+  var updateCardsDatabase = updateCardsDatabaseUsecaseFactory();
+  var updateLocationDatabase = updateLocationDatabaseUsecaseFactory();
+  await updateLocationDatabase.call();
+  await updateCardsDatabase.call();
+  print('aaaaaaaaaaaaaaaaaaaaaaaa');
 }

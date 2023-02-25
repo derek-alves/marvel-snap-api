@@ -2,7 +2,7 @@ import 'dart:io';
 import '../../utils/utils.dart';
 
 class CustomEnv {
-  static Map<String, String> _env = {};
+  static final Map<String, String> _env = {};
   static String _file = '.env';
 
   CustomEnv._();

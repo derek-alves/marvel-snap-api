@@ -5,7 +5,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import '../../domain/infra/infra.dart';
 
 class CardDatabaseRepositoryImpl implements DatabaseUpdateRepository {
-  final DatabaseConnection connection;
+  final DatabaseService connection;
 
   CardDatabaseRepositoryImpl({
     required this.connection,
