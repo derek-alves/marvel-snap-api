@@ -3,7 +3,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import '../../domain/infra/infra.dart';
 import '../env/env.dart';
 
-class MongoConnectionAdapter implements DatabaseConnection<Db> {
+class MongoConnectionAdapter implements DatabaseService<Db> {
   Db? _connection;
   @override
   Future<Db> get connection async {
