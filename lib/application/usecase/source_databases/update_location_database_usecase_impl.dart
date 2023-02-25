@@ -1,20 +1,28 @@
 import 'package:marvel_snap/domain/infra/infra.dart';
 import 'package:marvel_snap/domain/usecase/usecase.dart';
-import 'package:marvel_snap/infra/repository/card_repository.dart';
+
+import '../../../infra/http/http.dart';
 
 class UpdateLocationDatabaseUsecaseImpl implements UpdateDatabaseUsecase {
   final HttpService httpService;
-  final String url;
-  final CardRepository repository;
+  final DatabaseUpdateRepository repository;
 
   UpdateLocationDatabaseUsecaseImpl({
     required this.httpService,
-    required this.url,
     required this.repository,
   });
   @override
-  Future call() {
-    // TODO: implement call
-    throw UnimplementedError();
+  Future call() async {
+    try {
+      String url =
+          await ApiUrlManager.makeMarvelSnapUrl(MarvelSnapDataType.location);
+      final response = await httpService.request(
+        url: url,
+        method: RequestMethod.get,
+      );
+      await repository.update(response['success']['cards']);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

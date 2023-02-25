@@ -4,7 +4,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 
 class LocationRepository implements Repository<Location> {
   late final DbCollection _locationCollection;
-  LocationRepository({required DatabaseConnection connection}) {
+  LocationRepository({required DatabaseService connection}) {
     connection.connection.then(
       (conn) => _locationCollection = conn.collection('locations'),
     );

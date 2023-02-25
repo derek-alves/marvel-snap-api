@@ -1,55 +1,59 @@
-import 'package:dio/dio.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../../domain/infra/infra.dart';
-import '../env/env.dart';
 
 class LocationDatabaseRepositoryImpl implements DatabaseUpdateRepository {
-  final DatabaseConnection connection;
+  final DatabaseService connection;
+
   LocationDatabaseRepositoryImpl({
     required this.connection,
   });
   @override
-  Future<void> update(List location) async {
+  Future<void> update(List locations) async {
     try {
-      // repository http
-      var urlDatabase =
-          await CustomEnv.get<String>(key: 'location_database_url');
-      var dio = Dio();
-      final response = await dio.get(urlDatabase);
-
-      //repository
       var conn = await connection.connection as Db;
-      await conn.open();
-      var cardsCollection = conn.collection('location');
-      var bulk =
-          UnorderedBulk(cardsCollection, writeConcern: WriteConcern(w: 1));
 
-      final List cards = response.data['success']['cards'];
-      for (var card in cards) {
-        card.addAll({
-          '_id': card['cid'],
+      var locationsCollection = conn.collection('locations');
+      var bulk =
+          UnorderedBulk(locationsCollection, writeConcern: WriteConcern(w: 1));
+
+      for (var location in locations) {
+        location.addAll({
+          '_id': location['cid'],
           'dt_updated': DateTime.now().toIso8601String(),
         });
-        card.remove('cid');
+        location.remove('cid');
+        location.removeWhere(
+          (key, _) =>
+              key == 'cid' ||
+              key == 'cost' ||
+              key == 'power' ||
+              key == 'flavor' ||
+              key == 'variants' ||
+              key == 'tags' ||
+              key == 'url',
+        );
 
-        var existentCard = await cardsCollection.findOne({'_id': card['_id']});
-        if (existentCard != null) {
+        var existentlocation =
+            await locationsCollection.findOne({'_id': location['_id']});
+        if (existentlocation != null) {
           bulk.updateOne(
             UpdateOneStatement(
-              {'_id': card['_id']},
-              {'\$set': card},
+              {'_id': location['_id']},
+              {'\$set': location},
             ),
           );
         } else {
-          bulk.insertOne(card);
+          bulk.insertOne(location);
         }
       }
       await bulk.executeBulk();
 
-      await conn.close();
+      return;
     } catch (e) {
-      throw Exception("[ERROR/DB] -> Failed to update location database");
+      throw Exception("[ERROR/DB] -> Failed to update locations database");
     }
   }
 }
