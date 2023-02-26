@@ -1,6 +1,6 @@
-import 'package:marvel_snap/application/usecase/usecase.dart';
-import 'package:marvel_snap/domain/usecase/usecase.dart';
-import 'package:marvel_snap/infra/factory/factory.dart';
+import '../../../application/usecase/usecase.dart';
+import '../../../domain/usecase/usecase.dart';
+import '../factory.dart';
 
 UpdateDatabaseUsecase updateLocationDatabaseUsecaseFactory() =>
     UpdateLocationDatabaseUsecaseImpl(

@@ -1,4 +1,4 @@
-import 'package:marvel_snap/domain/entity/entity.dart';
+import 'entity.dart';
 
 class Card {
   final int id;

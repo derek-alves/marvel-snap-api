@@ -1,3 +1,3 @@
 export 'card.dart';
-export 'location.dart';
 export 'card_variant.dart';
+export 'location.dart';

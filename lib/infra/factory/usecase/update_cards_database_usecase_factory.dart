@@ -1,7 +1,6 @@
-import 'package:marvel_snap/application/usecase/usecase.dart';
-import 'package:marvel_snap/domain/usecase/usecase.dart';
-import 'package:marvel_snap/infra/factory/http/http.dart';
-
+import '../../../application/usecase/usecase.dart';
+import '../../../domain/usecase/usecase.dart';
+import '../http/http.dart';
 import '../repository/repository.dart';
 
 UpdateDatabaseUsecase updateCardsDatabaseUsecaseFactory() =>

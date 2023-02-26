@@ -1,4 +1,4 @@
-import 'package:marvel_snap/domain/infra/database/database.dart';
-import 'package:marvel_snap/infra/database/mongo_connection_adapter.dart';
+import '../../../domain/infra/database/database.dart';
+import '../../database/mongo_connection_adapter.dart';
 
 DatabaseService mongoConnectionFactory() => MongoConnectionAdapter();

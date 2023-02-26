@@ -1,6 +1,6 @@
-import 'package:marvel_snap/domain/entity/entity.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
+import '../../domain/entity/entity.dart';
 import '../../domain/infra/infra.dart';
 
 class CardRepository implements Repository<Card> {

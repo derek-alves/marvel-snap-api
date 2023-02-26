@@ -1,7 +1,6 @@
-import 'package:marvel_snap/domain/infra/infra.dart';
-import 'package:marvel_snap/infra/database/database.dart';
-import 'package:marvel_snap/infra/http/dio_adapter.dart';
-
+import '../../domain/infra/infra.dart';
+import '../database/database.dart';
+import '../http/dio_adapter.dart';
 import 'di.dart';
 
 class Injects {

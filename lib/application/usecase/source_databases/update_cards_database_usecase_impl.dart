@@ -1,6 +1,5 @@
-import 'package:marvel_snap/domain/infra/infra.dart';
-import 'package:marvel_snap/domain/usecase/usecase.dart';
-
+import '../../../domain/infra/infra.dart';
+import '../../../domain/usecase/usecase.dart';
 import '../../../infra/http/http.dart';
 
 class UpdateCardsDatabaseUsecaseImpl implements UpdateDatabaseUsecase {

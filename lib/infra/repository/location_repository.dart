@@ -1,6 +1,7 @@
-import 'package:marvel_snap/domain/entity/location.dart';
-import 'package:marvel_snap/domain/infra/infra.dart';
 import 'package:mongo_dart/mongo_dart.dart';
+
+import '../../domain/entity/location.dart';
+import '../../domain/infra/infra.dart';
 
 class LocationRepository implements Repository<Location> {
   late final DbCollection _locationCollection;

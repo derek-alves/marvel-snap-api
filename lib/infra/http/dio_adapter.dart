@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:marvel_snap/domain/infra/http/http.dart';
+
+import '../../domain/infra/http/http.dart';
 
 class DioAdapter implements HttpService {
   final Dio service = Dio();
